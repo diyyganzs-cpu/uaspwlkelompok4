@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+
 class AuthController extends Controller
 {
     // ==========================
@@ -24,25 +25,20 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Cek apakah input berupa email atau NIK
         $field = filter_var($request->login, FILTER_VALIDATE_EMAIL)
                 ? 'email'
                 : 'nik';
 
-        // Cari user berdasarkan email atau NIK
         $user = User::where($field, $request->login)->first();
 
-        // Validasi user dan password
         if (!$user || !Hash::check($request->password, $user->password)) {
             return back()->withErrors([
                 'login' => 'Email/NIK atau Password salah.'
             ]);
         }
 
-        // Lakukan login
         Auth::login($user);
 
-        // Redirect berdasarkan role
         if ($user->role == 'petugas') {
             return redirect()->route('petugas.dashboard');
         }
@@ -61,7 +57,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // 1. Validasi Input
         $request->validate([
             'nik'      => 'required|unique:users,nik|digits:16',
             'name'     => 'required|max:100',
@@ -71,7 +66,6 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        // 2. Simpan Data ke Database
         User::create([
             'nik'      => $request->nik,
             'name'     => $request->name,
@@ -82,7 +76,6 @@ class AuthController extends Controller
             'role'     => 'warga',
         ]);
 
-        // 3. Redirect ke halaman login dengan pesan sukses
         return redirect()->route('login')
             ->with('success', 'Registrasi berhasil. Silakan login.');
     }
@@ -91,28 +84,45 @@ class AuthController extends Controller
     // LUPA PASSWORD
     // ==========================
 
-    public function forgotForm()
+    public function showForgotPassword()
     {
         return view('auth.forgot-password');
     }
 
     public function forgotPassword(Request $request)
     {
-        // Logika lupa password
+        $request->validate([
+            'nik' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = User::where('nik', $request->nik)
+                    ->where('email', $request->email)
+                    ->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'NIK atau Email tidak ditemukan.'
+            ]);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('login')
+            ->with('success', 'Password berhasil diubah.');
     }
 
     // ==========================
     // LOGOUT
     // ==========================
 
-   public function logout(Request $request)
-{
-    Auth::logout();
-
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
-
-    return redirect()->route('login');
-}
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
 }

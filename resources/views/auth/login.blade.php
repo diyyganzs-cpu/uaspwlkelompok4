@@ -79,7 +79,9 @@
                     <div class="text-center">
                         <a href="{{ route('register') }}" class="text-purple-dark">Belum punya akun? Daftar</a>
                         <br><br>
-                        <a href="{{ route('forgot.password') }}" class="text-purple-dark small">Lupa Password?</a>
+                        <a href="{{ route('password.request') }}">
+    Lupa Password?
+</a>
                     </div>
                 </div>
             </div>

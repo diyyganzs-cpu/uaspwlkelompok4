@@ -61,10 +61,17 @@ Route::get('/register',[AuthController::class,'registerForm'])->name('register')
 
 Route::post('/register',[AuthController::class,'register']);
 
-Route::get('/forgot-password',[AuthController::class,'forgotForm'])
-        ->name('forgot.password');
+Route::get('/forgot-password', [AuthController::class, 'forgotPasswordForm'])
+    ->name('password.request');
 
-Route::post('/forgot-password',[AuthController::class,'forgotPassword']);
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])
+    ->name('password.update');
+
+Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])
+    ->name('password.request');
+
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])
+    ->name('password.reset');
 
 Route::post('/logout',[AuthController::class,'logout'])
         ->name('logout');
