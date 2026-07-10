@@ -7,16 +7,16 @@
 <div class="card shadow-sm border-0">
     <div class="card-body">
         <table class="table table-bordered table-hover">
-            <thead style="background-color: #2c1556; color: white;">
-                <tr>
-                    <th>No</th>
-                    <th>Nama Warga</th>
-                    <th>Judul</th>
-                    <th>Kategori</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
+           <thead style="background-color: #2c1556; color: white;">
+    <tr>
+        <th>No</th>
+        <th>Nama Warga</th>
+        <th>Judul</th>
+        <th>Kategori</th>
+        <th>Status</th>
+        <th>Aksi</th>
+    </tr>
+</thead>
             <tbody>
             @forelse($complaints as $item)
                 <tr>

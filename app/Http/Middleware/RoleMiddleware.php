@@ -17,9 +17,9 @@ class RoleMiddleware
 
         // Role tidak sesuai
         if (Auth::user()->role != $role) {
-            abort(403);
+            abort(403, 'maaf tampilan ini hanya bisa di akses oleh petugas');
         }
 
         return $next($request);
     }
-}
+}   

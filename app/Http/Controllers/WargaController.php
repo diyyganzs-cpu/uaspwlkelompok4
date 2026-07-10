@@ -58,7 +58,7 @@ class WargaController extends Controller
         }
 
         Complaint::create([
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'category_id' => $request->category_id,
             'judul' => $request->judul,
             'isi' => $request->isi,

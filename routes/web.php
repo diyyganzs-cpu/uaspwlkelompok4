@@ -5,7 +5,7 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\AuthController;
 
-
+//warga
 Route::middleware('role:warga')->group(function () {
 
     Route::get('/', [WargaController::class, 'dashboard'])
@@ -31,6 +31,8 @@ Route::middleware('role:warga')->group(function () {
 
 });
 
+
+//petugas 
 Route::middleware('role:petugas')->group(function () {
 
     Route::get('/petugas', [PetugasController::class, 'dashboard'])
@@ -52,7 +54,9 @@ Route::get('/petugas/pengaduan',[PetugasController::class,'index'])
 Route::get('/petugas/riwayat',[PetugasController::class,'riwayat'])
     ->name('petugas.riwayat');
 
-// AUTH
+
+
+    // AUTH
 Route::get('/login',[AuthController::class,'loginForm'])->name('login');
 
 Route::post('/login',[AuthController::class,'login']);

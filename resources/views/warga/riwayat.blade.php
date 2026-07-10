@@ -26,6 +26,7 @@
                             <th class="py-3">Status</th>
                             <th class="py-3">Tanggapan</th>
                             <th class="py-3 pe-4">Tanggal</th>
+                            
                         </tr>
                     </thead>
                     <tbody>

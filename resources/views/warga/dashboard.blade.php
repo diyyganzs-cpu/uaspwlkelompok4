@@ -1,7 +1,6 @@
 @extends('layouts.app-warga')
 
 @section('content')
-<!-- Menyisipkan Font Awesome CDN agar ikon di dalam lingkaran langsung muncul -->
 
 
 <div class="container-fluid py-4">
@@ -10,7 +9,14 @@
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-5 gap-3">
         <div>
             <h2 class="fw-bold mb-1" style="color: #1e1b4b;">Dashboard Warga</h2>
-            <p class="text-muted mb-0">Selamat datang, pantau status pengaduan Anda di sini.</p>
+          <p class="text-muted mb-2">Halo, selamat datang di pusat bantuan kami! Kami siap membantu mengatasi kendala Anda.</p>
+
+<ul class="text-muted list-unstyled mb-2" style="padding-left: 0;">
+    <li class="mb-1">🔹 <strong>Buat Laporan:</strong> Sampaikan detail masalah yang Anda alami di sini.</li>
+    <li>🔹 <strong>Pantau Progres:</strong> Lacak status penanganannya secara langsung dan real-time.</li>
+</ul>
+
+<p class="text-muted mb-0">Tenang saja, tim kami akan segera memprosesnya!</p>
         </div>
         <div>
             <a href="{{ route('warga.create') }}" class="btn btn-action text-white px-4 py-2.5 rounded-3 fw-semibold shadow-sm text-nowrap">
@@ -67,6 +73,7 @@
                 </div>
             </div>
         </div>
+        
 
         <!-- Kartu 4: Selesai -->
         <div class="col-sm-6 col-xl-3">

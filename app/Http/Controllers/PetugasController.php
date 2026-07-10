@@ -44,14 +44,14 @@ class PetugasController extends Controller
         return view('petugas.riwayat', compact('complaints'));
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $complaint = Complaint::with(['user', 'category'])->findOrFail($id);
 
         return view('petugas.edit', compact('complaint'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request,int $id)
     {
         $request->validate([
             'status' => 'required',

@@ -19,11 +19,8 @@
     
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
-
     <div class="card shadow" style="width:450px;">
-
         <div class="card-header text-white fw-bold" style="background:#2c1556;">
-
             Lupa Password
 
         </div>
@@ -31,103 +28,65 @@
 
 
         <div class="card-body">
-
-
-
             @if(session('success'))
-
                 <div class="alert alert-success">
-
                     {{ session('success') }}
-
                 </div>
-
             @endif
 
 
 
             @if($errors->any())
-
                 <div class="alert alert-danger">
-
                     {{ $errors->first() }}
-
                 </div>
-
             @endif
 
 
 
             <form action="{{ route('password.reset') }}" method="POST">
-
                 @csrf
 
 
 
                 <div class="mb-3">
-
                     <label class="form-label">NIK</label>
-
                     <input
-
                         type="text"
-
                         name="nik"
-
                         class="form-control"
-
                         required>
-
                 </div>
 
 
 
                 <div class="mb-3">
-
                     <label class="form-label">Email</label>
-
                     <input
-
                         type="email"
-
                         name="email"
-
                         class="form-control"
-
                         required>
-
                 </div>
 
 
 
                 <div class="mb-3">
-
                     <label class="form-label">Password Baru</label>
-
                     <input
-
                         type="password"
-
                         name="password"
-
                         class="form-control"
-
                         required>
-
                 </div>
 
 
 
                 <div class="mb-3">
-
                     <label class="form-label">Konfirmasi Password</label>
-
                     <input
-
                         type="password"
-
                         name="password_confirmation"
-
                         class="form-control"
                         required>
                 </div>
@@ -135,18 +94,13 @@
 
 
                 <button class="btn text-white w-100"
-
                         style="background:#2c1556;">
-
                     Reset Password
-
                 </button>
+
                 <a href="{{ route('login') }}"
-
                    class="btn btn-outline-secondary w-100 mt-2">
-
                     Kembali ke Login
-
                 </a>
             </form>
         </div>
